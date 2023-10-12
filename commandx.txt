@@ -1,0 +1,41 @@
+rails new apiStack --api --database=postgresql
+rails g controller api/v1/products index show --no-helper --no-assets --no-template-engine --no-test-framework
+rails g model product name:string brand:string price:string description:string --no-helper --no-assets --no-template-engine --no-test-framework
+psql -h localhost -d playground -U sangram -W
+
+rails c
+rails console
+
+rake db:seed
+rails s
+
+API CALLS:
+    a) GET ALL
+    curl --location 'http://localhost:3001/api/v1/products/'
+
+    b) Create Product
+    curl --location 'http://localhost:3001/api/v1/products' \
+    --header 'Content-Type: application/json' \
+    --data '    {
+            "name": "32 Inch LCD",
+            "brand": "TOSHIBA",
+            "price": "$500.00 USD",
+            "description": "Amazing LCD"
+        }'
+
+    3) Find By Id
+    curl --location 'http://localhost:3001/api/v1/products/2'
+
+    4) Update Product
+
+    curl --location --request PUT 'http://localhost:3001/api/v1/products/1' \
+    --header 'Content-Type: application/json' \
+    --data '{
+            "name": "PS4.0",
+            "brand": "Sony.0",
+            "price": "$500.00 USD",
+            "description": "NNextGen Gaming Console"
+    }'
+
+    5) Delete Product
+    curl --location --request DELETE 'http://localhost:3001/api/v1/products/3'
