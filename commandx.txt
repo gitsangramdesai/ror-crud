@@ -3,6 +3,9 @@ rails g controller api/v1/products index show --no-helper --no-assets --no-templ
 rails g model product name:string brand:string price:string description:string --no-helper --no-assets --no-template-engine --no-test-framework
 psql -h localhost -d playground -U sangram -W
 
+rake db:create 
+rake db:migrate
+
 rails c
 rails console
 
@@ -39,3 +42,6 @@ API CALLS:
 
     5) Delete Product
     curl --location --request DELETE 'http://localhost:3001/api/v1/products/3'
+
+    4) Find By brand
+    curl --location 'http://localhost:3001/api/v1/products/brand/Bose'

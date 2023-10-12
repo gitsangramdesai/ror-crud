@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources:products,only:[:index,:show,:create,:update,:destroy]
+      get "products/brand/:name",to:"products#by_brand_name"
     end
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

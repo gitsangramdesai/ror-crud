@@ -49,5 +49,14 @@ class Api::V1::ProductsController < ApplicationController
       render json:{error:"Error Deleting product"}
     end
   end
+
+  def by_brand_name
+    products = Product.where(brand:params[:name])
+    if products
+      render json:products,status:200
+    else
+      render json:{error:"Product not found!"}
+    end
+  end
   
 end
